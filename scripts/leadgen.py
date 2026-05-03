@@ -666,6 +666,16 @@ def compose_email_queue(rows: list[dict[str, str]], queue_path: Path, config: di
     email_dir = queue_path.parent / "emails"
     email_dir.mkdir(parents=True, exist_ok=True)
     queue_rows: list[dict[str, str]] = []
+    prior_status: dict[str, dict[str, str]] = {}
+    if queue_path.exists():
+        for prior in read_csv(queue_path):
+            lead_id = prior.get("lead_id", "")
+            status = prior.get("send_status", "")
+            if lead_id and status in {"drafted", "sent", "skipped"}:
+                prior_status[lead_id] = {
+                    "send_status": status,
+                    "notes": prior.get("notes", ""),
+                }
     count = 0
 
     for row in rows:
@@ -678,6 +688,8 @@ def compose_email_queue(rows: list[dict[str, str]], queue_path: Path, config: di
         updated["email_subject"] = subject
         updated["email_body_path"] = str(body_path.relative_to(ROOT))
         updated["send_status"] = updated.get("send_status") or ("queued" if updated.get("email") else "needs_email")
+        if updated.get("lead_id") in prior_status:
+            updated.update(prior_status[updated["lead_id"]])
         queue_rows.append({column: updated.get(column, "") for column in EMAIL_QUEUE_COLUMNS})
         row.update({
             "email_subject": subject,
