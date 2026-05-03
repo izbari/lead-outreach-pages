@@ -4,7 +4,7 @@
   "normalized_output_path": "output/leads_antalya.csv",
   "email_queue_path": "output/email_queue_antalya.csv",
   "site_output_dir": "dist-antalya",
-  "landing_base_url": "",
+  "landing_base_url": "https://izbari.github.io/lead-outreach-pages",
   "google_places": {
     "enabled": false,
     "output_path": "data/raw/google_places_antalya.csv",
