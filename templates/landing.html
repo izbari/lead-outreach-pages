@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>{{business_name}} | {{category}}</title>
+  <style>
+    :root {
+      --ink: #171923;
+      --muted: #5f6675;
+      --line: #e5e7eb;
+      --paper: #fbfaf7;
+      --accent: {{accent_color}};
+      --accent-dark: {{accent_dark}};
+      --soft: {{accent_soft}};
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px clamp(18px, 5vw, 64px);
+      color: #fff;
+      background: rgba(12, 16, 24, 0.48);
+      backdrop-filter: blur(12px);
+    }
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0;
+      font-size: clamp(18px, 2vw, 24px);
+      max-width: 58vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      font-weight: 650;
+    }
+    .nav a { opacity: 0.9; }
+    .nav a:hover { opacity: 1; }
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      align-items: end;
+      padding: 132px clamp(18px, 5vw, 72px) 70px;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(5, 9, 18, 0.78), rgba(5, 9, 18, 0.34) 58%, rgba(5, 9, 18, 0.54)),
+        url("{{hero_image}}") center / cover no-repeat;
+    }
+    .hero-inner {
+      width: min(780px, 100%);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 12px;
+      border: 1px solid rgba(255,255,255,0.38);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      font-size: 13px;
+      font-weight: 750;
+      color: rgba(255,255,255,0.92);
+    }
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      max-width: 12ch;
+    }
+    .hero p {
+      margin: 0;
+      max-width: 58ch;
+      font-size: clamp(18px, 2vw, 22px);
+      color: rgba(255,255,255,0.9);
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.34);
+      color: #fff;
+      background: var(--accent);
+    }
+    .button.secondary {
+      background: rgba(255,255,255,0.12);
+    }
+    main {
+      display: grid;
+      gap: 0;
+    }
+    section {
+      padding: clamp(46px, 7vw, 82px) clamp(18px, 5vw, 72px);
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: clamp(28px, 5vw, 68px);
+      align-items: start;
+      background: #fff;
+    }
+    .intro h2,
+    .services h2,
+    .contact h2 {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+    .intro p,
+    .contact p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 68ch;
+    }
+    .info {
+      display: grid;
+      gap: 12px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+    .info-row {
+      display: grid;
+      gap: 2px;
+    }
+    .info-row span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+    .info-row strong {
+      font-size: 16px;
+      overflow-wrap: anywhere;
+    }
+    .services {
+      background: var(--soft);
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+    .service {
+      min-height: 150px;
+      padding: 22px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid rgba(17, 24, 39, 0.08);
+    }
+    .service strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    .service p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+      background: #fff;
+    }
+    .contact-panel {
+      padding: 28px;
+      border-radius: 8px;
+      background: #121722;
+      color: #fff;
+    }
+    .contact-panel a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 54px;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      font-weight: 780;
+      overflow-wrap: anywhere;
+    }
+    .contact-panel a:last-child { border-bottom: 0; }
+    .footer {
+      padding: 22px clamp(18px, 5vw, 72px);
+      color: var(--muted);
+      font-size: 13px;
+      background: var(--paper);
+    }
+    @media (max-width: 780px) {
+      .topbar {
+        position: absolute;
+        align-items: flex-start;
+      }
+      .nav { display: none; }
+      .brand { max-width: 82vw; }
+      .hero {
+        min-height: 82vh;
+        padding-top: 112px;
+      }
+      .intro,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top">{{business_name}}</a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="#hakkinda">Hakkında</a>
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <span class="eyebrow">{{district}} / {{city}}</span>
+      <h1>{{business_name}}</h1>
+      <p>{{hero_text}}</p>
+      <div class="actions">
+        <a class="button" href="{{phone_href}}">{{cta_label}}</a>
+        <a class="button secondary" href="{{maps_url}}">Yol tarifi al</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="intro" id="hakkinda">
+      <div>
+        <h2>{{category}} deneyimini daha görünür hale getirin.</h2>
+        <p>{{intro_text}}</p>
+      </div>
+      <aside class="info" aria-label="İşletme bilgileri">
+        <div class="info-row">
+          <span>Adres</span>
+          <strong>{{address}}</strong>
+        </div>
+        <div class="info-row">
+          <span>Telefon</span>
+          <strong>{{phone}}</strong>
+        </div>
+        <div class="info-row">
+          <span>Sosyal</span>
+          <strong>{{instagram}}</strong>
+        </div>
+      </aside>
+    </section>
+
+    <section class="services" id="hizmetler">
+      <h2>Öne çıkanlar</h2>
+      <div class="service-grid">
+        <article class="service">
+          <strong>Kolay ulaşım</strong>
+          <p>Telefon, harita ve sosyal kanallar tek sayfada net biçimde yer alır.</p>
+        </article>
+        <article class="service">
+          <strong>Mobil öncelikli</strong>
+          <p>Sayfa, müşterilerin telefondan hızlıca arama veya rota alması için hazırlanır.</p>
+        </article>
+        <article class="service">
+          <strong>Güncel görünüm</strong>
+          <p>İşletmenin güven veren, sade ve hızlı açılan bir web varlığı olur.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="iletisim">
+      <div>
+        <h2>Rezervasyon ve bilgi için iletişime geçin.</h2>
+        <p>{{contact_text}}</p>
+      </div>
+      <div class="contact-panel">
+        <a href="{{phone_href}}"><span>Telefon</span><span>{{phone}}</span></a>
+        <a href="{{maps_url}}"><span>Harita</span><span>Google Maps</span></a>
+        <a href="{{instagram_url}}"><span>Instagram</span><span>{{instagram}}</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Bu sayfa, işletme için hazırlanmış demo çalışmadır ve yayına alınmadan önce içerikler doğrulanmalıdır.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,4 @@
+id,displayName,formattedAddress,primaryTypeDisplayName,types,nationalPhoneNumber,internationalPhoneNumber,websiteUri,googleMapsUri,rating,userRatingCount,businessStatus,sourceQuery
+places/sample1,Polika Kafe,Moda Cad. Zuhal Sok. No:14/C Kadikoy Istanbul,Kafe,"cafe, food",0216 405 27 48,+90 216 405 27 48,,https://maps.google.com/?cid=sample1,4.6,128,OPERATIONAL,Kadikoy kafe
+places/sample2,Naive Floral Cafe,Haci Mehmet Efendi Sk. No:33/B Kadikoy Istanbul,Kafe / Cicekci,"cafe, florist",0543 252 20 55,+90 543 252 20 55,,https://maps.google.com/?cid=sample2,4.8,89,OPERATIONAL,Kadikoy kafe
+places/sample3,Atikhair Kuafor,Kadikoy Istanbul,Kuafor,hair_care,0541 660 68 66,+90 541 660 68 66,https://atikhair.example,https://maps.google.com/?cid=sample3,4.4,74,OPERATIONAL,Kadikoy kuafor

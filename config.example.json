@@ -1,0 +1,95 @@
+{
+  "scraper_command": "",
+  "raw_input_path": "data/sample_leads.csv",
+  "normalized_output_path": "output/leads.csv",
+  "email_queue_path": "output/email_queue.csv",
+  "site_output_dir": "dist",
+  "landing_base_url": "",
+  "google_places": {
+    "enabled": false,
+    "output_path": "data/raw/google_places.csv",
+    "queries": [
+      "Kadikoy kafe",
+      "Kadikoy kuafor",
+      "Kadikoy dis klinigi"
+    ],
+    "language_code": "tr",
+    "region_code": "TR",
+    "max_results_per_query": 40
+  },
+  "osm_overpass": {
+    "enabled": false,
+    "output_path": "data/raw/osm_overpass.csv",
+    "bbox": {
+      "south": 40.963,
+      "west": 29.005,
+      "north": 41.018,
+      "east": 29.115
+    },
+    "area_label": "Kadikoy",
+    "area_city": "İstanbul",
+    "categories": {
+      "kafe": [
+        ["amenity", "cafe"]
+      ],
+      "kuafor": [
+        ["shop", "hairdresser"]
+      ],
+      "dis_klinigi": [
+        ["amenity", "dentist"],
+        ["healthcare", "dentist"]
+      ]
+    }
+  },
+  "campaign": {
+    "sender_email": "",
+    "sender_name": "Zafer",
+    "sender_signature": "Zafer Baris",
+    "service_name": "mini web sitesi",
+    "cta_label": "Randevu / teklif al",
+    "reply_line": "Uygunsa 10 dakikada üzerinden geçip işletmenize göre düzenleyebilirim."
+  },
+  "filters": {
+    "target_only": true,
+    "min_rating": 0,
+    "min_review_count": 0,
+    "exclude_chain_names": [
+      "Starbucks",
+      "Mado",
+      "Caffe Nero",
+      "Caffè Nero",
+      "Kahve Dünyası",
+      "Gloria Jean",
+      "Espressolab",
+      "Caribou",
+      "Robert's Coffee",
+      "Pelit",
+      "Midpoint",
+      "BigChefs",
+      "Burger King",
+      "McDonald's",
+      "KFC",
+      "Popeyes",
+      "Domino's",
+      "Pizza Hut",
+      "Baydöner",
+      "Simit Sarayı",
+      "Shakespeare",
+      "David People",
+      "Extrablatt",
+      "Big Yellow Taxi",
+      "Tavuk Dünyası",
+      "Faruk Güllüoğlu",
+      "Komagene",
+      "Özsüt",
+      "Yemen Kahvesi",
+      "Osmanlı Kahvecisi",
+      "Alaçatı Muhallebicisi",
+      "Coffee Lab",
+      "Mackbear",
+      "Arabica",
+      "Schiller",
+      "Welldone"
+    ]
+  }
+}
